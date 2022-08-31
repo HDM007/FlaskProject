@@ -1,0 +1,76 @@
+2022-07-29 02:42:03,733 ERROR: Exception on / [GET] [in /Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/flask/app.py:1449]
+Traceback (most recent call last):
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedTable: relation "user" does not exist
+LINE 2: FROM "user" 
+             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/flask/app.py", line 1519, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/flask/app.py", line 1517, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/flask/app.py", line 1503, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/flask_login/utils.py", line 284, in decorated_view
+    elif not current_user.is_authenticated:
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/werkzeug/local.py", line 316, in __get__
+    obj = instance._get_current_object()  # type: ignore[misc]
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/werkzeug/local.py", line 516, in _get_current_object
+    return get_name(local())  # type: ignore
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/flask_login/utils.py", line 25, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/flask_login/utils.py", line 372, in _get_user
+    current_app.login_manager._load_user()
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/flask_login/login_manager.py", line 364, in _load_user
+    user = self._user_callback(user_id)
+  File "/Users/harry/src/DankFlask/app/routes.py", line 16, in load_user
+    return User.query.get(int(id))
+  File "<string>", line 2, in get
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/util/deprecations.py", line 402, in warned
+    return fn(*args, **kwargs)
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 943, in get
+    return self._get_impl(ident, loading.load_on_pk_identity)
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/orm/query.py", line 947, in _get_impl
+    return self.session._get_impl(
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2912, in _get_impl
+    return db_load_fn(
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/orm/loading.py", line 530, in load_on_pk_identity
+    session.execute(
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1712, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1631, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 332, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1498, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1862, in _execute_context
+    self._handle_dbapi_exception(
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2043, in _handle_dbapi_exception
+    util.raise_(
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 208, in raise_
+    raise exception
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1819, in _execute_context
+    self.dialect.do_execute(
+  File "/Users/harry/src/DankFlask/venv/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 732, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "user" does not exist
+LINE 2: FROM "user" 
+             ^
+
+[SQL: SELECT "user".id AS user_id, "user".username AS user_username, "user".email AS user_email, "user".password_hash AS user_password_hash, "user".about_me AS user_about_me, "user".signed_up_date AS user_signed_up_date 
+FROM "user" 
+WHERE "user".id = %(pk_1)s]
+[parameters: {'pk_1': 5}]
+(Background on this error at: https://sqlalche.me/e/14/f405)
+2022-07-29 02:44:45,719 INFO: Dank Startup [in /Users/harry/src/DankFlask/app/__init__.py:44]
+2022-07-29 02:47:36,521 INFO: Dank Startup [in /Users/harry/src/DankFlask/app/__init__.py:44]
